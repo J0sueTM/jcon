@@ -138,24 +138,24 @@ void jcon_parse_objs
 
 int jcon_str_to_token
 (
-  char *_type
+  char *_str
 )
 {
-  if (!strcmp(_type, "obj_"))
+  if (!strcmp(_str, "obj_"))
     return JCON_TOKEN_OBJ_MAIN_BEGIN;
-  if (!strcmp(_type, "obj"))
+  if (!strcmp(_str, "obj"))
     return JCON_TOKEN_OBJ_BEGIN;
-  if (!strncmp(_type, "arr", 3))
+  if (!strncmp(_str, "arr", 3))
     return JCON_TOKEN_ARR_BEGIN;
-  if (!strcmp(_type, "int"))
+  if (!strcmp(_str, "int"))
     return JCON_TOKEN_INT;
-  if (!strcmp(_type, "float"))
+  if (!strcmp(_str, "float"))
     return JCON_TOKEN_FLOAT;
-  if (!strcmp(_type, "double"))
+  if (!strcmp(_str, "double"))
     return JCON_TOKEN_DOUBLE;
-  if (!strcmp(_type, "str"))
+  if (!strcmp(_str, "str"))
     return JCON_TOKEN_STR;
-  if (!strcmp(_type, "bool"))
+  if (!strcmp(_str, "bool"))
     return JCON_TOKEN_BOOL;
   
   return JCON_TOKEN_UNDEF;
