@@ -25,6 +25,7 @@ jcon_parser *jcon_parse_file
 {
   char msg[255];
   sprintf(msg, "Parsing file %s", _file);
+  jcon_log(JCON_INFO, msg);
 
   jcon_parser *parser = malloc(sizeof(jcon_parser));
   parser->file = fopen(_file, "r");

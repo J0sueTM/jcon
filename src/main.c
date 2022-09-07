@@ -20,6 +20,7 @@
 #include "logger.h"
 #include "args.h"
 #include "parser.h"
+#include "generator.h"
 
 int main
 (
@@ -39,14 +40,27 @@ int main
     jcon_help();
 
   jcon_parser *cur_parser;
+  jcon_generator *cur_gen;
   for (int i = 0; i < args.in_file_count; ++i)
   {
     cur_parser = jcon_parse_file(args.in_files[i]);
-    if (cur_parser == NULL)
+    if (!cur_parser)
     {
       char warning[255];
       sprintf(warning, "Could not parse input file %s", args.in_files[i]);
       jcon_log(JCON_WARNING, warning);
+
+      goto skip_file;
+    }
+
+    cur_gen = jcon_generate_files(cur_parser, args.in_files[i], args.out_folder);
+    if (!cur_gen)
+    {
+      char err[255];
+      sprintf(err, "Could not generate output from file %s", args.in_files[i]);
+      jcon_log(JCON_ERROR, err);
+
+      goto skip_file;
     }
 
     /*
@@ -68,6 +82,9 @@ int main
       printf("\n");
     }
     */
+
+  skip_file:
+    free(cur_parser);
   }
 
   return 0;
