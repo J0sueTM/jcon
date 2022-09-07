@@ -63,26 +63,6 @@ int main
       goto skip_file;
     }
 
-    /*
-    for (int i = 0; i < cur_parser->obj_count; ++i)
-    {
-      int prop_i = 0;
-      jcon_parser_obj *cur_obj = &cur_parser->objs[i];
-      printf("%s -> %d\n", cur_obj->name, cur_obj->token_count);
-      for (int j = 0; j < cur_obj->token_count; ++j)
-      {
-        if (cur_obj->tokens[j] == JCON_TOKEN_PROP)
-        {
-          printf("\"%s\":\n", cur_obj->props[prop_i]);
-          ++prop_i;
-        }
-        else
-          printf("%s\n", jcon_token_to_str(cur_obj->tokens[j]));
-      }
-      printf("\n");
-    }
-    */
-
   skip_file:
     free(cur_parser);
   }

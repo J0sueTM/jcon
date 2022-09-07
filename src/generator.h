@@ -20,9 +20,13 @@
 #include "parser.h"
 #include <libgen.h>
 
+#define JCON_MAX_JSON_BUF_S 50000
+
 typedef struct jcon_generator
 {
   jcon_parser *parser;
+  char *in_f;
+  char *in_fbase;
   FILE *out_f;
 } jcon_generator;
 
@@ -31,4 +35,14 @@ jcon_generator *jcon_generate_files
   jcon_parser *_parser,
   char        *_file,
   char        *_folder
+);
+
+void jcon_generate_header
+(
+  jcon_generator *_gen
+);
+
+void jcon_generate_to_json
+(
+  jcon_generator *_gen
 );
