@@ -22,20 +22,25 @@
 #include "core.h"
 #include "logger.h"
 
-#define JCON_TOKEN_UNDEF          0   
-#define JCON_TOKEN_NULL           1   
-#define JCON_TOKEN_OBJ_MAIN_BEGIN 2
-#define JCON_TOKEN_OBJ_MAIN_END   3
-#define JCON_TOKEN_OBJ_BEGIN      4
-#define JCON_TOKEN_OBJ_END        5
-#define JCON_TOKEN_PROP           6
-#define JCON_TOKEN_ARR_BEGIN      7   
-#define JCON_TOKEN_ARR_END        8   
-#define JCON_TOKEN_INT            9
-#define JCON_TOKEN_FLOAT          10
-#define JCON_TOKEN_DOUBLE         11
-#define JCON_TOKEN_STR            12
-#define JCON_TOKEN_BOOL           13
+#define JCON_TOKEN_UNDEF            0
+#define JCON_TOKEN_NULL             1
+#define JCON_TOKEN_OBJ_MAIN_BEGIN   2
+#define JCON_TOKEN_OBJ_MAIN_END     3
+#define JCON_TOKEN_OBJ_BEGIN        4
+#define JCON_TOKEN_OBJ_END          5
+#define JCON_TOKEN_PROP             6
+#define JCON_TOKEN_ARR_BEGIN_INT    7
+#define JCON_TOKEN_ARR_BEGIN_FLOAT  8
+#define JCON_TOKEN_ARR_BEGIN_DOUBLE 9
+#define JCON_TOKEN_ARR_BEGIN_STR    10
+#define JCON_TOKEN_ARR_BEGIN_BOOL   11
+#define JCON_TOKEN_ARR_BEGIN_OBJ    12
+#define JCON_TOKEN_ARR_END          13
+#define JCON_TOKEN_INT              14
+#define JCON_TOKEN_FLOAT            15
+#define JCON_TOKEN_DOUBLE           16
+#define JCON_TOKEN_STR              17
+#define JCON_TOKEN_BOOL             18
 
 #define JCON_MAX_TOKENS 5000
 #define JCON_MAX_OBJS   50

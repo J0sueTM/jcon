@@ -5,42 +5,36 @@
  * More info: https://github.com/J0sueTM/jcon
  */
 
+#ifndef JCON_simple_GENERATED
+#define JCON_simple_GENERATED
+
 #include "simple.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+static char out_json[10000];
+
+#define JSON_POS out_json + strlen(out_json)
 
 char *jcon_jcon_example_simple_1_to_json
 (
   jcon_example_simple_1 *_obj
 )
 {
-  char *out_json = malloc(6000 * sizeof(char));
-  int json_i = 0;
-
-  sprintf(out_json + json_i, "{");
-  json_i += 1;
-
-  sprintf(out_json + json_i, "\"j_int\": ");
-  json_i += 8;
-  sprintf(out + json_i, "%d", _obj->j_int);
-  json_i += (int)((_obj->j_int) / 10);
-  strcpy(out_json + json_i, ",\n");
-
-  json_i += 2
-
-  sprintf(out_json + json_i, "\"j_float\": ");
-  json_i += 10;
-  strcpy(out_json + json_i, ",\n");
-
-  json_i += 2
-
-  sprintf(out_json + json_i, "\"j_double\": ");
-  json_i += 11;
-  strcpy(out_json + json_i, ",\n");
-
-  json_i += 2
-
-  sprintf(out_json + json_i, "}");
-  json_i += 1;
+  memset(out_json, '\0', 10000 * sizeof(char));
+  sprintf(JSON_POS, "{");
+  sprintf(JSON_POS, "\n");
+  sprintf(JSON_POS, "\"j_int\": ");
+  sprintf(JSON_POS, "%d", _obj->j_int);
+  sprintf(JSON_POS, ",\n");
+  sprintf(JSON_POS, "\"j_float\": ");
+  sprintf(JSON_POS, "%f", _obj->j_float);
+  sprintf(JSON_POS, ",\n");
+  sprintf(JSON_POS, "\"j_double\": ");
+  sprintf(JSON_POS, "%lf", _obj->j_double);
+  sprintf(JSON_POS, ",\n");
+  sprintf(JSON_POS, "}");
 
   return out_json;
 }
@@ -50,36 +44,54 @@ char *jcon_jcon_example_simple_2_to_json
   jcon_example_simple_2 *_obj
 )
 {
-  char *out_json = malloc(6000 * sizeof(char));
-  int json_i = 0;
-
-  sprintf(out_json + json_i, "{");
-  json_i += 1;
-
-  sprintf(out_json + json_i, "\"j_str\": ");
-  json_i += 8;
-  strcpy(out_json + json_i, ",\n");
-
-  json_i += 2
-
-  sprintf(out_json + json_i, "\"j_bool\": ");
-  json_i += 9;
-  strcpy(out_json + json_i, ",\n");
-
-  json_i += 2
-
-  sprintf(out_json + json_i, "\"j_arr\": ");
-  json_i += 8;
-  sprintf(out_json + json_i, "[");
-  json_i += 1;
-
-  sprintf(out_json + json_i, "]");
-  json_i += 1;
-  sprintf(out_json + json_i, ",\n");
-  json_i += 2
-
-  sprintf(out_json + json_i, "}");
-  json_i += 1;
+  memset(out_json, '\0', 10000 * sizeof(char));
+  sprintf(JSON_POS, "{");
+  sprintf(JSON_POS, "\n");
+  sprintf(JSON_POS, "\"j_str\": ");
+  sprintf(JSON_POS, "\"%s\"", _obj->j_str);
+  sprintf(JSON_POS, ",\n");
+  sprintf(JSON_POS, "\"j_bool\": ");
+  sprintf(JSON_POS, "%s", (_obj->j_bool) ? "true" : "false");
+  sprintf(JSON_POS, ",\n");
+  sprintf(JSON_POS, "\"j_arr_int\": ");
+  sprintf(JSON_POS, "[");
+  sprintf(JSON_POS, "\n");
+  for (int i = 0; i < (int)(sizeof(_obj->j_arr_int) / sizeof(_obj->j_arr_int[0])); ++i)
+  {
+    sprintf(JSON_POS, "%d,\n", _obj->j_arr_int[i]);
+  }
+  sprintf(JSON_POS, "]");
+  sprintf(JSON_POS, ",\n");
+  sprintf(JSON_POS, "\"j_arr_float\": ");
+  sprintf(JSON_POS, "[");
+  sprintf(JSON_POS, "\n");
+  for (int i = 0; i < (int)(sizeof(_obj->j_arr_float) / sizeof(_obj->j_arr_float[0])); ++i)
+  {
+    sprintf(JSON_POS, "%f,\n", _obj->j_arr_float[i]);
+  }
+  sprintf(JSON_POS, "]");
+  sprintf(JSON_POS, ",\n");
+  sprintf(JSON_POS, "\"j_arr_double\": ");
+  sprintf(JSON_POS, "[");
+  sprintf(JSON_POS, "\n");
+  for (int i = 0; i < (int)(sizeof(_obj->j_arr_double) / sizeof(_obj->j_arr_double[0])); ++i)
+  {
+    sprintf(JSON_POS, "%lf,\n", _obj->j_arr_double[i]);
+  }
+  sprintf(JSON_POS, "]");
+  sprintf(JSON_POS, ",\n");
+  sprintf(JSON_POS, "\"j_arr_str\": ");
+  sprintf(JSON_POS, "[");
+  sprintf(JSON_POS, "\n");
+  for (int i = 0; i < (int)(sizeof(_obj->j_arr_str) / sizeof(_obj->j_arr_str[0])); ++i)
+  {
+    sprintf(JSON_POS, "\"%s\",\n", _obj->j_arr_str[i]);
+  }
+  sprintf(JSON_POS, "]");
+  sprintf(JSON_POS, ",\n");
+  sprintf(JSON_POS, "}");
 
   return out_json;
 }
+
+#endif

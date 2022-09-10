@@ -16,6 +16,9 @@
  * GNU General Public License for more details.
  */
 
+#ifndef JCON_EXAMPLES_SIMPLE_H
+#define JCON_EXAMPLES_SIMPLE_H
+
 #include <stdbool.h>
 
 /* @jcon obj_:"jcon_example_simple_1" */
@@ -36,6 +39,14 @@ typedef struct jcon_example_simple_2
   char *j_str;
   /* @jcon bool:"j_bool" */
   bool j_bool;
-  /* @jcon arr/int:"j_arr" */
-  int *j_arr;
+  /* @jcon arr/int:"j_arr_int" */
+  int j_arr_int[3];
+  /* @jcon arr/float:"j_arr_float" */
+  float j_arr_float[3];
+  /* @jcon arr/double:"j_arr_double" */
+  double j_arr_double[3];
+  /* @jcon arr/str:"j_arr_str" */
+  char *j_arr_str[5];
 } jcon_example_simple_2;
+
+#endif

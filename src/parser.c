@@ -121,7 +121,8 @@ void jcon_parse_objs
       cur_obj->tokens[cur_obj->token_count] = token;
       ++cur_obj->token_count;
 
-      if (token == JCON_TOKEN_ARR_BEGIN)
+      if (token >= JCON_TOKEN_ARR_BEGIN_INT &&
+          token <= JCON_TOKEN_ARR_BEGIN_OBJ)
       {
         cur_obj->tokens[cur_obj->token_count] = JCON_TOKEN_ARR_END;
         ++cur_obj->token_count;
@@ -146,7 +147,22 @@ int jcon_str_to_token
   if (!strcmp(_str, "obj"))
     return JCON_TOKEN_OBJ_BEGIN;
   if (!strncmp(_str, "arr", 3))
-    return JCON_TOKEN_ARR_BEGIN;
+  {
+    if (!strcmp(_str + 4, "int"))
+      return JCON_TOKEN_ARR_BEGIN_INT;
+    else if (!strcmp(_str + 4, "float"))
+      return JCON_TOKEN_ARR_BEGIN_FLOAT;
+    else if (!strcmp(_str + 4, "double"))
+      return JCON_TOKEN_ARR_BEGIN_DOUBLE;
+    else if (!strcmp(_str + 4, "str"))
+      return JCON_TOKEN_ARR_BEGIN_STR;
+    else if (!strcmp(_str + 4, "bool"))
+      return JCON_TOKEN_ARR_BEGIN_BOOL;
+    else if (!strcmp(_str + 4, "obj"))
+      return JCON_TOKEN_ARR_BEGIN_OBJ;
+
+    return JCON_TOKEN_ARR_BEGIN_INT;
+  }
   if (!strcmp(_str, "int"))
     return JCON_TOKEN_INT;
   if (!strcmp(_str, "float"))
@@ -196,7 +212,27 @@ char *jcon_token_to_str
       return "\"prop\"";
       
       break;
-    case JCON_TOKEN_ARR_BEGIN:
+    case JCON_TOKEN_ARR_BEGIN_INT:
+      return "[";
+
+      break;
+    case JCON_TOKEN_ARR_BEGIN_FLOAT:
+      return "[";
+
+      break;
+    case JCON_TOKEN_ARR_BEGIN_DOUBLE:
+      return "[";
+
+      break;
+    case JCON_TOKEN_ARR_BEGIN_STR:
+      return "[";
+
+      break;
+    case JCON_TOKEN_ARR_BEGIN_BOOL:
+      return "[";
+
+      break;
+    case JCON_TOKEN_ARR_BEGIN_OBJ:
       return "[";
 
       break;
